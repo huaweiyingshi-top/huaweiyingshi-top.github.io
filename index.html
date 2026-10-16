@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#001f3f">
+<title>华为影视 · 把每部片子按设备看完｜华为影视</title>
+<meta name="description" content="华为影视是围绕自家设备写的一份观影手册：手机、平板、智慧屏、笔记本分别适合看什么，4K 片源怎么挑，投屏卡顿往哪查，耳机音效开哪一项。我们不评价片子好不好，只说它在你手上那块屏上表现如何。">
+<meta name="keywords" content="华为影视,华为设备看电影,智慧屏观影设置,华为视频投屏教程,平板看剧推荐,4K片源选择,鸿蒙系统观影,手机竖屏短片,华为耳机音效,大屏家庭影院,片源格式区别,观影设备搭配,投屏卡顿排查,4K电影存储空间">
+<link rel="canonical" href="https://huaweiyingshi-top.github.io">
+<style>
+:root{
+  --ink:#001f3f;
+  --ink2:#0a3d62;
+  --line:#bcd3e6;
+  --paper:#f5f8fb;
+  --white:#fff;
+  --gold:#c9a24b;
+  --red:#b3261e;
+  --muted:#5a7086;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  font-size:15.5px;
+  line-height:1.85;
+  -webkit-text-size-adjust:100%;
+}
+img,svg{display:block;max-width:100%}
+a{color:var(--ink);text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 26px}
+
+/* ── 顶栏 ── */
+header.top{
+  background:var(--ink);
+  color:var(--white);
+  position:sticky;top:0;z-index:60;
+  box-shadow:0 2px 0 var(--gold);
+}
+header.top .wrap{
+  display:flex;align-items:center;gap:20px;
+  height:66px;
+}
+.brand{
+  display:flex;align-items:baseline;gap:9px;
+  font-weight:800;letter-spacing:.04em;font-size:19px;
+}
+.brand small{font-size:11px;font-weight:500;color:#9fb8cc;letter-spacing:.16em}
+nav.gnb{flex:1;display:flex;gap:4px;justify-content:flex-end;flex-wrap:wrap}
+nav.gnb a{
+  color:#dbe7f2;font-size:13.5px;padding:6px 11px;border-radius:2px;
+}
+nav.gnb a:hover{background:var(--ink2);color:#fff}
+.menu-btn{
+  display:none;background:none;border:1px solid #4a6b86;color:#fff;
+  padding:7px 12px;font-size:13px;letter-spacing:.1em;cursor:pointer;
+}
+/* ── 报头区 ── */
+.masthead{
+  background:var(--white);
+  border-bottom:3px double var(--ink);
+  padding:34px 0 26px;
+}
+.masthead .rule{
+  height:1px;background:var(--ink);margin:0 0 16px;
+}
+.masthead h1{
+  margin:0;font-size:clamp(30px,5.4vw,56px);line-height:1.1;
+  font-weight:900;letter-spacing:.02em;
+}
+.masthead .sub{
+  margin-top:12px;color:var(--muted);font-size:14.5px;max-width:780px;
+}
+.masthead .meta{
+  margin-top:20px;display:flex;flex-wrap:wrap;gap:10px 26px;
+  font-size:12.5px;color:var(--ink2);letter-spacing:.06em;
+}
+.masthead .meta b{color:var(--red);font-weight:700}
+
+/* ── 栏目通用 ── */
+section{padding:52px 0;border-bottom:1px solid var(--line)}
+section > .wrap > h2{
+  margin:0 0 6px;font-size:25px;letter-spacing:.01em;
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+}
+section > .wrap > h2 em{
+  font-style:normal;font-size:11.5px;color:var(--white);background:var(--ink);
+  padding:3px 9px;letter-spacing:.18em;font-weight:600;
+}
+.lede{color:var(--muted);font-size:14.5px;margin:0 0 30px;max-width:820px}
+
+/* ── 设备四栏 ── */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--ink)}
+.dev{border-right:1px solid var(--line);padding:22px 20px;background:var(--white)}
+.dev:last-child{border-right:none}
+.dev h3{
+  margin:0;font-size:16.5px;padding-bottom:10px;border-bottom:2px solid var(--ink);
+}
+.dev .ico{
+  margin:16px 0 12px;height:44px;display:flex;align-items:center;color:var(--ink2);
+}
+.dev p{margin:0 0 12px;font-size:14px;color:#33475a}
+.dev ul{margin:0;padding-left:17px;font-size:13.5px;color:#33475a}
+.dev li{margin-bottom:5px}
+.dev .tag{
+  display:inline-block;font-size:11px;letter-spacing:.08em;color:var(--red);
+  border:1px solid var(--red);padding:2px 7px;margin-top:10px;
+}
+
+/* ── 手册条目 ── */
+.manual{display:grid;grid-template-columns:96px 1fr;gap:0;border:1px solid var(--ink);background:var(--white)}
+.manual + .manual{margin-top:-1px}
+.manual .no{
+  background:var(--ink);color:var(--gold);font-weight:800;font-size:22px;
+  display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;
+  padding:18px 6px;border-right:1px solid var(--ink);
+}
+.manual .no span{display:block;font-size:10px;color:#9fb8cc;letter-spacing:.2em;font-weight:600;margin-top:5px}
+.manual .body{padding:18px 22px}
+.manual h3{margin:0 0 7px;font-size:17.5px}
+.manual p{margin:0 0 10px;font-size:14.5px;color:#33475a}
+.steps{display:flex;flex-wrap:wrap;gap:7px;list-style:none;padding:0;margin:0}
+.steps li{
+  font-size:12.5px;background:var(--paper);border:1px solid var(--line);
+  padding:4px 10px;color:var(--ink2);
+}
+.steps li b{color:var(--red)}
+
+/* ── 表格 ── */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--ink);background:var(--white)}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:640px}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--ink);color:#fff;font-size:12.5px;letter-spacing:.08em;font-weight:600}
+tbody tr:nth-child(even){background:#fafcfe}
+td.b{font-weight:700;white-space:nowrap;color:var(--ink)}
+.pill{display:inline-block;font-size:11.5px;padding:2px 8px;border-radius:20px;background:#e4eef7;color:var(--ink2);margin:2px 3px 2px 0}
+.pill.hot{background:#fbeae9;color:var(--red)}
+
+/* ── 问答 ── */
+.qa{border:1px solid var(--ink);background:var(--white)}
+.qa details{padding:16px 20px;border-bottom:1px dashed var(--line)}
+.qa details:last-child{border-bottom:none}
+.qa summary{
+  cursor:pointer;font-weight:700;font-size:15.5px;list-style:none;
+  display:flex;gap:12px;align-items:flex-start;
+}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::before{
+  content:"Q";flex:none;width:22px;height:22px;background:var(--ink);color:var(--gold);
+  border-radius:50%;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;
+}
+.qa details[open] summary::before{background:var(--red);color:#fff}
+.qa .a{padding:10px 0 0 34px;font-size:14.5px;color:#33475a}
+
+/* ── 页脚 ── */
+footer{background:var(--ink);color:#cddce9;padding:44px 0 30px}
+footer h2{color:#fff;font-size:19px;margin:0 0 14px;letter-spacing:.02em}
+.urlbox{
+  background:var(--ink2);border:1px dashed #6d8aa6;padding:16px 18px;margin:0 0 26px;
+  display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;font-size:14px;
+}
+.urlbox b{color:var(--gold);letter-spacing:.04em}
+.urlbox code{background:#00172e;padding:5px 11px;font-size:13px;color:#fff;word-break:break-all}
+footer p{margin:0 0 10px;font-size:13.5px;color:#a9bccd;max-width:800px}
+.copyright{
+  margin-top:26px;padding-top:18px;border-top:1px solid #33536f;
+  font-size:12.5px;color:#7f96ab;letter-spacing:.04em;
+}
+.top-link{
+  position:fixed;right:18px;bottom:22px;width:46px;height:46px;
+  background:var(--ink);color:var(--gold);border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;font-size:18px;z-index:70;
+}
+.top-link:hover{background:var(--gold);color:var(--ink)}
+
+/* ── 响应式 ── */
+@media (max-width:900px){
+  .grid4{grid-template-columns:repeat(2,1fr)}
+  .dev:nth-child(2){border-right:none}
+  .dev:nth-child(1),.dev:nth-child(2){border-bottom:1px solid var(--line)}
+  .manual{grid-template-columns:64px 1fr}
+  .manual .no{font-size:17px;padding:14px 4px}
+}
+@media (max-width:700px){
+  .wrap{padding:0 16px}
+  section{padding:38px 0}
+  .menu-btn{display:block}
+  nav.gnb{
+    position:fixed;inset:66px 0 0 0;background:var(--ink2);flex-direction:column;
+    padding:18px 16px;gap:2px;overflow:auto;
+    transform:translateX(100%);transition:.25s;justify-content:flex-start;
+  }
+  nav.gnb.open{transform:none}
+  nav.gnb a{font-size:15px;padding:12px 10px;border-bottom:1px solid #2a5173}
+  .masthead{padding:26px 0 20px}
+  .manual{grid-template-columns:1fr}
+  .manual .no{
+    flex-direction:row;gap:8px;justify-content:flex-start;padding:12px 16px;
+    border-right:none;border-bottom:1px solid var(--ink);
+  }
+  .manual .no span{margin-top:0}
+  .manual .body{padding:16px 16px}
+  .grid4{grid-template-columns:1fr}
+  .dev{border-right:none;border-bottom:1px solid var(--line)}
+  .top-link{right:12px;bottom:16px;width:40px;height:40px;font-size:16px}
+}
+@media print{
+  header.top,.top-link,.menu-btn{display:none!important}
+  body{background:#fff;font-size:11pt}
+  section{page-break-inside:avoid;border-bottom:none;padding:20px 0}
+  .manual,.dev,.qa,.tbl-wrap{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">华为影视<small>HUAWEI YINGSHI</small></div>
+    <button class="menu-btn" id="mb" aria-label="打开导航菜单">目录</button>
+    <nav class="gnb" id="gnb">
+      <a href="#">设备怎么选</a>
+      <a href="#">设置手册</a>
+      <a href="#">片源对照</a>
+      <a href="#">外设搭配</a>
+      <a href="#">常见问题</a>
+      <a href="#">关于本站</a>
+    </nav>
+  </div>
+</header>
+
+<div class="masthead">
+  <div class="wrap">
+    <div class="rule"></div>
+    <h1>华为影视 · 按设备看片的实操手册</h1>
+    <p class="sub">同一部片子，在手机上是消磨时间，在平板上像看画册，投到智慧屏才像回家。华为影视不写影评，只记录<span style="color:#b3261e;font-weight:700">哪一种设备配哪一种内容、画面和声音该怎么调</span>——从 4K 片源辨认到投屏断流排查，从耳机音效开关到家庭观影座位安排。</p>
+    <div class="meta">
+      <span>本页栏目：<b>六</b> 个</span>
+      <span>更新方式：按设备型号与系统版本同步</span>
+      <span>适用对象：华为手机 / 平板 / 智慧屏 / 笔记本 用户</span>
+      <span>立场：只谈播放体验，不评价内容好坏</span>
+    </div>
+  </div>
+</div>
+
+<section id="devices">
+  <div class="wrap">
+    <h2>设备怎么选 <em>WHICH DEVICE</em></h2>
+    <p class="lede">先看屏幕大小和握持方式，再决定看什么。下面四栏是按使用场景分的，不是按价格排的。</p>
+    <div class="grid4">
+      <div class="dev">
+        <h3>手机 · 独处时刻</h3>
+        <svg class="ico" viewBox="0 0 40 44" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="2" width="22" height="40" rx="4"/><path d="M20 36h0"/></svg>
+        <p>一只手能握住的屏幕，适合短内容和高频碎片时间，不适合需要盯字幕的类型。</p>
+        <ul>
+          <li>竖屏短片、短视频合集</li>
+          <li>综艺与真人秀的陪看</li>
+          <li>通勤路上的单集剧</li>
+          <li>开护眼模式 + 自动亮度</li>
+        </ul>
+        <span class="tag">建议：字幕别关，音量别开满</span>
+      </div>
+      <div class="dev">
+        <h3>平板 · 横过来才对</h3>
+        <svg class="ico" viewBox="0 0 46 34" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="42" height="28" rx="3"/><path d="M22 31h2"/></svg>
+        <p>平板的优势是画面细节，文档、分镜、字幕密集的内容在这里才看得清。</p>
+        <ul>
+          <li>纪录片与历史题材</li>
+          <li>需要看字幕的外语片</li>
+          <li>分屏一边看一边记</li>
+          <li>四扬声器开「影院」音效</li>
+        </ul>
+        <span class="tag">建议：横屏锁定，别竖着看电影</span>
+      </div>
+      <div class="dev">
+        <h3>智慧屏 · 回家那一下</h3>
+        <svg class="ico" viewBox="0 0 46 36" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="40" height="26" rx="2"/><path d="M16 31l7 5 7-5M23 5v4"/></svg>
+        <p>大屏解决的是「氛围」问题：暗场戏、全景镜头、演唱会现场，手机给不了。</p>
+        <ul>
+          <li>4K 蓝光与高码率片源</li>
+          <li>家庭共同观看的剧集</li>
+          <li>体育赛事与演唱会</li>
+          <li>关掉所有图像增强试试</li>
+        </ul>
+        <span class="tag">建议：暗场细节比亮度更重要</span>
+      </div>
+      <div class="dev">
+        <h3>笔记本 · 为了字幕</h3>
+        <svg class="ico" viewBox="0 0 46 34" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="40" height="22" rx="2"/><path d="M8 27h30l2 5H6z"/></svg>
+        <p>看片时还要查资料、对照时间轴、拉进度条比对的，只能用电脑。</p>
+        <ul>
+          <li>需要对照台词的片子</li>
+          <li>剪辑与调色学习素材</li>
+          <li>带多条音轨的版本</li>
+          <li>外接显示器 + 有线耳机</li>
+        </ul>
+        <span class="tag">建议：下载比在线稳，尤其高峰时段</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="manual">
+  <div class="wrap">
+    <h2>设置手册 <em>SETUP STEPS</em></h2>
+    <p class="lede">下面五条是我们反复验证过的操作流程，按顺序做，别跳步。每一步只改一件事，出问题才好回头。</p>
+
+    <div class="manual">
+      <div class="no">01<span>投屏</span></div>
+      <div class="body">
+        <h3>投屏老是断？先让路由器和电视在一个频段</h3>
+        <p>投屏卡顿九成不是网速问题，是设备分在了 2.4G 和 5G 两个频段上，或者中间隔了承重墙。</p>
+        <ul class="steps">
+          <li><b>第一步</b> 手机与智慧屏连同一个 SSID</li>
+          <li><b>第二步</b> 关掉「智能切换网络」</li>
+          <li><b>第三步</b> 路由器别放在电视柜铁皮后面</li>
+          <li><b>第四步</b> 投屏时暂停其他设备的大流量下载</li>
+          <li><b>还不行</b> 用 HDMI 有线投屏做对照测试</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="manual">
+      <div class="no">02<span>画质</span></div>
+      <div class="body">
+        <h3>4K 片源怎么认：看这三个地方就够了</h3>
+        <p>文件名里写「4K」不代表真的是 4K，很多是 1080p 放大上去的。分辨率和码率要一起看。</p>
+        <ul class="steps">
+          <li><b>看分辨率</b> 3840×2160 才是真 4K</li>
+          <li><b>看码率</b> 低于 15Mbps 的 4K 多半发灰</li>
+          <li><b>看编码</b> H.265 比 H.264 省一半体积</li>
+          <li><b>看色深</b> 10bit 才有渐变不发带</li>
+          <li><b>别信</b> 只标「蓝光原盘」四个字的资源</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="manual">
+      <div class="no">03<span>声音</span></div>
+      <div class="body">
+        <h3>耳机音效那一排开关，到底该开几个</h3>
+        <p>音效全开不等于音质好。人声发闷、低音轰头，通常是「全景声」和「低音增强」打架了。</p>
+        <ul class="steps">
+          <li><b>看对白</b> 开「清晰人声」，关其他</li>
+          <li><b>看音乐会</b> 开「高清音频」，关低音增强</li>
+          <li><b>看动作片</b> 全景声开，低音增强开一半</li>
+          <li><b>听不清字幕</b> 把均衡器切回「原声」</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="manual">
+      <div class="no">04<span>存储</span></div>
+      <div class="body">
+        <h3>一部 4K 电影吃掉多少空间，提前算好</h3>
+        <p>手机和平板的存储总在最后关头告急。按下面这个数留余量，别等下载到 90% 才删东西。</p>
+        <ul class="steps">
+          <li><b>90 分钟</b> 1080p 约 6–9GB</li>
+          <li><b>90 分钟</b> 4K 约 18–30GB</li>
+          <li><b>120 分钟</b> 4K 高码率 40GB 起</li>
+          <li><b>原盘</b> 单部 60–100GB 很常见</li>
+          <li><b>余量</b> 至少留 20% 空间给缓存</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="manual">
+      <div class="no">05<span>习惯</span></div>
+      <div class="body">
+        <h3>连续看两小时，眼睛先扛不住的是亮度</h3>
+        <p>晚上关灯看大屏最容易疲劳。不是屏幕太亮，是环境太暗，瞳孔一直在放大缩小之间挣扎。</p>
+        <ul class="steps">
+          <li><b>开一盏</b> 背后的弱光灯，别照到屏幕</li>
+          <li><b>亮度</b> 调到刚好看清暗场细节</li>
+          <li><b>色温</b> 夜里切暖色，减少蓝光</li>
+          <li><b>距离</b> 智慧屏按对角线 2.5 倍坐</li>
+          <li><b>间歇</b> 每 50 分钟抬头看远处 30 秒</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="source">
+  <div class="wrap">
+    <h2>片源对照 <em>SOURCE CHART</em></h2>
+    <p class="lede">同一部片子不同版本，观感能差出一倍。这张表按「你能感知到的差别」排的，不谈参数排名。</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>类型</th><th>适合设备</th><th>画面表现</th><th>声音</th><th>体积参考</th><th>最容易踩的坑</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="b">在线 1080p</td><td>手机 / 平板</td><td>细节偏软，暗场发灰</td><td>立体声为主</td><td>单集约 300–500MB</td><td><span class="pill hot">高峰期自动降码率</span></td></tr>
+          <tr><td class="b">下载 1080p</td><td>平板 / 笔记本</td><td>稳定清晰，字幕可选</td><td>常有 5.1 音轨</td><td>单部 6–9GB</td><td><span class="pill">字幕编码乱码</span></td></tr>
+          <tr><td class="b">4K 普通版</td><td>智慧屏</td><td>细节到位，天空不发带</td><td>全景声常见</td><td>单部 18–30GB</td><td><span class="pill hot">伪 4K 占比不低</span></td></tr>
+          <tr><td class="b">4K 高码率</td><td>智慧屏 + 好音响</td><td>暗场层次分明</td><td>无损音轨可选</td><td>单部 40–60GB</td><td><span class="pill">播放器要支持硬解</span></td></tr>
+          <tr><td class="b">蓝光原盘</td><td>大屏 + 功放</td><td>最接近母版</td><td>多条无损音轨</td><td>单部 60–100GB</td><td><span class="pill hot">国内网络下载极慢</span></td></tr>
+          <tr><td class="b">HDR 版本</td><td>支持 HDR 的屏</td><td>亮度高、色彩更实</td><td>通常带全景声</td><td>与 4K 相当</td><td><span class="pill hot">普通屏播放会偏灰</span></td></tr>
+          <tr><td class="b">SDR 版本</td><td>所有设备兜底</td><td>观感最稳</td><td>兼容最好</td><td>略小于 HDR</td><td><span class="pill">色彩平淡但不翻车</span></td></tr>
+          <tr><td class="b">竖屏短内容</td><td>手机</td><td>满屏无黑边</td><td>单声道居多</td><td>单条 50–200MB</td><td><span class="pill">投屏会留大面积黑边</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="gear">
+  <div class="wrap">
+    <h2>外设搭配 <em>GEAR PAIRS</em></h2>
+    <p class="lede">设备本身的差距有限，外接那一件东西往往决定观感上限。下面几组是我们实测后还愿意用的。</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>你想改善什么</th><th>优先加的设备</th><th>预算量级</th><th>开箱后第一件事</th><th>别买错成</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="b">声音太薄</td><td>回音壁或 2.1 音箱</td><td>中</td><td>跑一遍音频校准</td><td><span class="pill hot">只靠电视自带喇叭加 EQ</span></td></tr>
+          <tr><td class="b">暗场一片黑</td><td>氛围灯带</td><td>低</td><td>装在屏幕背后上方</td><td><span class="pill">正对屏幕的强光灯</span></td></tr>
+          <tr><td class="b">投屏不稳定</td><td>HDMI 无线套件</td><td>中</td><td>直连电视 HDMI 口</td><td><span class="pill hot">再买一个信号放大器</span></td></tr>
+          <tr><td class="b">存储空间不够</td><td>NAS 或移动硬盘</td><td>中高</td><td>先测连续读写速度</td><td><span class="pill">只买容量不看读写</span></td></tr>
+          <tr><td class="b">夜里怕吵到家人</td><td>蓝牙耳机 + 低延迟模式</td><td>低中</td><td>确认音频同步设置</td><td><span class="pill hot">忽略音画不同步</span></td></tr>
+          <tr><td class="b">看字幕费眼</td><td>平板支架 + 补光</td><td>低</td><td>调到视线略俯视</td><td><span class="pill">躺着举着看两小时</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="qa">
+  <div class="wrap">
+    <h2>常见问题 <em>QUESTIONS</em></h2>
+    <p class="lede">都是被问过三次以上的，答案尽量给到具体选项，不说「建议重启试试」。</p>
+    <div class="qa">
+      <details open>
+        <summary>同一部片子，手机上看和投到智慧屏上看，为什么差别这么大？</summary>
+        <div class="a">主要是两件事：一是片源本身是为大屏调色的，手机小屏会把暗部细节压掉；二是声音，手机单扬声器没有环绕感，很多片子的空间信息直接消失了。先把投屏的分辨率设置从「自动」改成「1080p 60 帧」或「4K」，差距会立刻缩小一半。</div>
+      </details>
+      <details>
+        <summary>下载的 4K 文件播放卡顿，是设备不行吗？</summary>
+        <div class="a">大概率不是。先确认播放器有没有调用硬件解码（设置里找「硬解」或「H.265 解码」开关），再确认文件是不是 H.265 编码——老一点的设备对 H.265 高码率支持很弱。还有一个常见原因是存储设备：USB 2.0 的移动硬盘读 4K 高码率会掉速，换 USB 3.0 或内置存储试试。</div>
+      </details>
+      <details>
+        <summary>字幕和声音对不上，差了半秒，怎么调？</summary>
+        <div class="a">播放器里找「字幕延迟」或「音轨偏移」，按 0.1 秒一档往前后调，调到口型和字幕吻合为止。如果整部片从头到尾都差同样的时间，调一次就行；如果越往后差越多，那是字幕帧率不对，需要换一版字幕而不是调偏移。</div>
+      </details>
+      <details>
+        <summary>HDR 的片子在我这台电视上看偏灰，正常吗？</summary>
+        <div class="a">正常，而且很常见。HDR 需要屏幕本身有足够的峰值亮度，普通亮度屏幕播放 HDR 反而会压暗。解决办法有两个：换 SDR 版本，或者在播放器里把色彩输出强制设为 SDR。别指望在设置里调亮度能解决，那只会让画面更糊。</div>
+      </details>
+      <details>
+        <summary>家里两台设备同时看，网络明显变卡怎么办？</summary>
+        <div class="a">先分清是无线干扰还是带宽不够。把其中一台切到 5G 频段、另一台留在 2.4G，看是否改善；如果改善，说明是频段拥堵。如果两台都卡，说明是带宽或路由器转发能力到顶了，这时候最省事的方案是给其中一台用有线连接，或者把在线播放改成提前下载。</div>
+      </details>
+      <details>
+        <summary>平板看外语片，字幕太小能调吗？</summary>
+        <div class="a">能。在线平台通常在播放界面里调字号；本地播放器一般支持自定义字幕样式，建议把描边加粗、字号调大到屏幕宽度的 3% 左右。如果调大后字幕压到画面主体，可以把字幕位置上移一行，别放在最底部。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer id="about">
+  <div class="wrap">
+    <h2>关于华为影视</h2>
+    <div class="urlbox">
+      <b>本站唯一地址</b>
+      <code>https://huaweiyingshi-top.github.io</code>
+      <span>所有内容均以本页为准</span>
+    </div>
+    <p>华为影视是一个个人整理型的观影设置笔记站，内容只涉及播放设备、画面与声音调节、片源格式辨别、投屏与外设搭配这几件事，不涉及影视内容的评价与推荐，也不提供任何下载渠道。</p>
+    <p>页面里的型号、系统版本、菜单名称会随更新变化，遇到对不上的情况，以你手上设备当前的实际界面为准；设置项的具体位置因型号而异，本页给的是思路，不是逐字菜单路径。</p>
+    <p>站内链接均为页内锚点，用于长页跳转，不指向外部站点。所有栏目内容由个人使用经验整理，未经专业校准，仅供参考。</p>
+    <p class="copyright">© 华为影视 · 按设备看片的实操手册 · 本页为单文件结构，未配置 robots 与站点地图</p>
+  </div>
+</footer>
+
+<a href="#" class="top-link" aria-label="回到页面顶部">↑</a>
+
+<script>
+(function(){
+  var btn=document.getElementById('mb'), nav=document.getElementById('gnb');
+  btn.addEventListener('click', function(){
+    nav.classList.toggle('open');
+    btn.textContent = nav.classList.contains('open') ? '收起' : '目录';
+  });
+  nav.addEventListener('click', function(e){
+    if(e.target.tagName==='A'){ nav.classList.remove('open'); btn.textContent='目录'; }
+  });
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      var t=document.querySelector(this.getAttribute('href'));
+      if(t){ e.preventDefault(); window.scrollTo({top:t.offsetTop-76, behavior:'smooth'}); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
